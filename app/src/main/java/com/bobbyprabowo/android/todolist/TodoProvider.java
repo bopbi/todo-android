@@ -25,7 +25,7 @@ public class TodoProvider extends ContentProvider {
 
     private static final String BASE_URI = "content://"+ AUTHORITY + "/";
     public static final String TODOS_PATH = "todos";
-    public static final String SPIKS_URI = BASE_URI + TODOS_PATH;
+    public static final String TODO_URI = BASE_URI + TODOS_PATH;
 
     private static UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
     static {

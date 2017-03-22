@@ -47,7 +47,7 @@ public class TodoLocalDataSource implements TodoDataSource {
     public Observable<List<Todo>> getAllTodos(boolean refresh) {
         BriteContentResolver resolver = sqlBrite.wrapContentProvider(context.getContentResolver(), Schedulers.io());
         return resolver
-                .createQuery(Uri.parse(TodoProvider.SPIKS_URI), null, null, null, null, false)
+                .createQuery(Uri.parse(TodoProvider.TODO_URI), null, null, null, null, false)
                 .map(new Func1<SqlBrite.Query, List<Todo>>() {
 
                     @Override
@@ -101,7 +101,7 @@ public class TodoLocalDataSource implements TodoDataSource {
             public List<Todo> call() throws Exception {
 
                 // clean all first
-                context.getContentResolver().delete(Uri.parse(TodoProvider.SPIKS_URI), null, null);
+                context.getContentResolver().delete(Uri.parse(TodoProvider.TODO_URI), null, null);
 
                 List<ContentValues> contentValues = new ArrayList<>(todos.size());
 
@@ -113,7 +113,7 @@ public class TodoLocalDataSource implements TodoDataSource {
                     cv.put(TodoDB.COLUMN_TODO_COMPLETED, Utils.IntFromBoolean(todo.isCompleted()));
                     contentValues.add(cv);
                 }
-                context.getContentResolver().bulkInsert(Uri.parse(TodoProvider.SPIKS_URI), contentValues.toArray(new ContentValues[todos.size()]));
+                context.getContentResolver().bulkInsert(Uri.parse(TodoProvider.TODO_URI), contentValues.toArray(new ContentValues[todos.size()]));
 
                 return todos;
             }

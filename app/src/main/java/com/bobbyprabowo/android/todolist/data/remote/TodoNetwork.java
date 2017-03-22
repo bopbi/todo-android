@@ -22,7 +22,7 @@ public class TodoNetwork {
 
     private TodoService todoService;
 
-    private TodoNetwork(Context context) {
+    private TodoNetwork() {
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .build();
@@ -31,7 +31,7 @@ public class TodoNetwork {
                 .create();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://ec2-54-166-196-16.compute-1.amazonaws.com/")
+                .baseUrl("http://jsonplaceholder.typicode.com/")
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
@@ -42,9 +42,9 @@ public class TodoNetwork {
 
     private static TodoNetwork todoNetwork;
 
-    public static TodoNetwork getInstance(Context context) {
+    public static TodoNetwork getInstance() {
         if (todoNetwork == null) {
-            todoNetwork = new TodoNetwork(context);
+            todoNetwork = new TodoNetwork();
         }
         return todoNetwork;
     }

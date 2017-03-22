@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
 
 import com.bobbyprabowo.android.todolist.TodoApplication;
 import com.bobbyprabowo.android.todolist.data.Todo;
@@ -82,6 +83,7 @@ public class TodoFetchService extends Service {
                         TransactionManager.saveTimelineTransactionStatus(TodoFetchService.this, false);
 
                         LocalBroadcastManager.getInstance(TodoFetchService.this).sendBroadcast(i);
+                        Log.i("TODO", "OK");
                     }
                 });
     }

@@ -23,7 +23,7 @@ public class TodoRemoteDataSource implements TodoDataSource {
     private TodoNetwork todoNetwork;
 
     private TodoRemoteDataSource(Context context) {
-        todoNetwork = TodoNetwork.getInstance(context);
+        todoNetwork = TodoNetwork.getInstance();
     }
 
     public static TodoRemoteDataSource getInstance(Context context) {
